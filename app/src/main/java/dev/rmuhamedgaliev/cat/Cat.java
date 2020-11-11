@@ -1,3 +1,4 @@
+package dev.rmuhamedgaliev.cat;
 
 public class Cat
 {

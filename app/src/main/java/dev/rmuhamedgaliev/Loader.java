@@ -1,3 +1,4 @@
+import dev.rmuhamedgaliev.cat.Cat;
 
 public class Loader
 {
