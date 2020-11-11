@@ -15,7 +15,6 @@ public class Cat {
         originWeight = weight;
         minWeight = 1000.0;
         maxWeight = 9000.0;
-
     }
 
     public void meow() {
