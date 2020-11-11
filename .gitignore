@@ -7,3 +7,5 @@ build
 .idea/
 **/.idea
 **/*.iml
+**/*.class
+**/out
