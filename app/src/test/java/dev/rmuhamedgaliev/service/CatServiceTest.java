@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 class CatServiceTest {
@@ -95,15 +96,6 @@ class CatServiceTest {
         log.debug("Cat with id: {} is dead", catId);
     }
 
-//    Создать в классе Cat метод, который будет возвращать сумму съеденной еды текущей кошки
-//    Создать в классе Cat метод “сходить в туалет” pee(), который будет уменьшать вес кошки и что-нибудь печатать.
-//    Рекомендации: протестируйте верную работу метода возврата съеденной еды:
-//
-//    создайте кошку
-//    покормите кошку кормом весом 150.00
-//    вызовите метод pee() несколько раз
-//    распечатайте значение съеденного корма, в консоль должно напечататься 150.00
-
     @Test
     void checkPee() {
         Cat cat = new Cat();
@@ -123,6 +115,38 @@ class CatServiceTest {
             });
 
         assertEquals(oldWeight - countOfPee, cat.getWeight());
+    }
 
+    @Test
+    void checkCreateCatWithWeight() {
+        double weight = 1500;
+        Cat cat = new Cat(weight);
+
+        assertEquals(weight, cat.getWeight());
+    }
+
+    @Test
+    void checkCreateKitten() {
+        Cat kitten = Cat.getKitten();
+
+        double defaultKittenWeight = 1100.00;
+
+        assertEquals(defaultKittenWeight, kitten.getWeight());
+    }
+
+    @Test
+    void checkHasTail() {
+        Cat kitten = Cat.getKitten();
+
+        assertTrue(kitten.hasTail());
+    }
+
+    @Test
+    void checkCloneCat() throws CloneNotSupportedException {
+        Cat kitten = Cat.getKitten();
+
+        Cat clonned = kitten.clone();
+
+        assertEquals(kitten.getWeight(), clonned.getWeight());
     }
 }

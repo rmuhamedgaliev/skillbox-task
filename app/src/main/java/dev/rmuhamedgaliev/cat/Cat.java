@@ -3,9 +3,17 @@ package dev.rmuhamedgaliev.cat;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Cat {
+public class Cat implements Cloneable {
+
+    private static final double DEFAULT_KITTEN_WEIGHT = 1100.0;
 
     private static int countOfCats;
+
+    private final int NUMBER_OF_EYES = 2;
+
+    private final double MIN_WEIGHT = 1000.0;
+
+    private final double MAX_WEIGHT = 9000.0;
 
     public boolean alive;
 
@@ -17,20 +25,34 @@ public class Cat {
 
     private double maxWeight;
 
+    private Color color = Color.BLACK;
+
     private double countOfEaten;
+
+    private boolean hasTail = true;
 
     public Cat() {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
-        minWeight = 1000.0;
-        maxWeight = 9000.0;
+        minWeight = MIN_WEIGHT;
+        maxWeight = MAX_WEIGHT;
 
         countOfCats++;
         alive = true;
     }
 
+    public Cat(double weight) {
+        this();
+        this.weight = weight;
+        this.originWeight = weight;
+    }
+
     public static int getCountOfCats() {
         return countOfCats;
+    }
+
+    public static Cat getKitten() {
+        return new Cat(DEFAULT_KITTEN_WEIGHT);
     }
 
     public void meow() {
@@ -89,5 +111,35 @@ public class Cat {
         } else {
             return "Playing";
         }
+    }
+
+    public int getCountOfEye() {
+        return NUMBER_OF_EYES;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public boolean hasTail() {
+        return hasTail;
+    }
+
+    @Override
+    public Cat clone() throws CloneNotSupportedException {
+        Cat cat = (Cat) super.clone();
+
+        cat.weight = this.weight;
+        cat.color = this.color;
+        cat.hasTail = this.hasTail;
+        cat.originWeight = this.originWeight;
+        cat.minWeight = this.minWeight;
+        cat.maxWeight = this.maxWeight;
+
+        return cat;
     }
 }
