@@ -1,5 +1,6 @@
 package dev.rmuhamedgaliev.cat;
 
+<<<<<<< HEAD
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -16,6 +17,9 @@ public class Cat implements Cloneable {
     private final double MAX_WEIGHT = 9000.0;
 
     public boolean alive;
+=======
+public class Cat {
+>>>>>>> master
 
     private double originWeight;
 
@@ -25,6 +29,7 @@ public class Cat implements Cloneable {
 
     private double maxWeight;
 
+<<<<<<< HEAD
     private Color color = Color.BLACK;
 
     private double countOfEaten;
@@ -84,12 +89,33 @@ public class Cat implements Cloneable {
 
     public double getCountOfEaten() {
         return countOfEaten;
+=======
+    public Cat() {
+        weight = 1500.0 + 3000.0 * Math.random();
+        originWeight = weight;
+        minWeight = 1000.0;
+        maxWeight = 9000.0;
+    }
+
+    public void meow() {
+        weight = weight - 1;
+        System.out.println("Meow");
+    }
+
+    public void feed(Double amount) {
+        weight = weight + amount;
+    }
+
+    public void drink(Double amount) {
+        weight = weight + amount;
+>>>>>>> master
     }
 
     public Double getWeight() {
         return weight;
     }
 
+<<<<<<< HEAD
     public boolean isAlive() {
         if (weight < minWeight || weight > maxWeight & alive) {
             alive = false;
@@ -102,6 +128,9 @@ public class Cat implements Cloneable {
 
     public String getStatus() {
         isAlive();
+=======
+    public String getStatus() {
+>>>>>>> master
         if (weight < minWeight) {
             return "Dead";
         } else if (weight > maxWeight) {
