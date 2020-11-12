@@ -11,10 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-<<<<<<< HEAD
 import static org.junit.jupiter.api.Assertions.assertTrue;
-=======
->>>>>>> master
 
 @Slf4j
 class CatServiceTest {
@@ -62,11 +59,7 @@ class CatServiceTest {
             });
     }
 
-<<<<<<< HEAD
     //    "замяукайте" кошку до смерти
-=======
-//    "замяукайте" кошку до смерти
->>>>>>> master
     @Test
     void meowUnderDeath() {
         List<Cat> cats = this.catService.generateCats(DEFAULT_COUNT_OF_CATS);
@@ -84,11 +77,7 @@ class CatServiceTest {
         log.debug("Cat with id: {} is ded", catId);
     }
 
-<<<<<<< HEAD
     //    перекормите кошку
-=======
-//    перекормите кошку
->>>>>>> master
     @Test
     void fedUnderDeath() {
         List<Cat> cats = this.catService.generateCats(DEFAULT_COUNT_OF_CATS);
@@ -104,7 +93,6 @@ class CatServiceTest {
             cat.feed(amountOfFood);
         }
 
-<<<<<<< HEAD
         log.debug("Cat with id: {} is dead", catId);
     }
 
@@ -160,8 +148,5 @@ class CatServiceTest {
         Cat clonned = kitten.clone();
 
         assertEquals(kitten.getWeight(), clonned.getWeight());
-=======
-        log.debug("Cat with id: {} is ded", catId);
->>>>>>> master
     }
 }
