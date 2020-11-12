@@ -58,7 +58,7 @@ class CatServiceTest {
             });
     }
 
-//    "замяукайте" кошку до смерти
+    //    "замяукайте" кошку до смерти
     @Test
     void meowUnderDeath() {
         List<Cat> cats = this.catService.generateCats(DEFAULT_COUNT_OF_CATS);
@@ -76,7 +76,7 @@ class CatServiceTest {
         log.debug("Cat with id: {} is ded", catId);
     }
 
-//    перекормите кошку
+    //    перекормите кошку
     @Test
     void fedUnderDeath() {
         List<Cat> cats = this.catService.generateCats(DEFAULT_COUNT_OF_CATS);
@@ -92,6 +92,37 @@ class CatServiceTest {
             cat.feed(amountOfFood);
         }
 
-        log.debug("Cat with id: {} is ded", catId);
+        log.debug("Cat with id: {} is dead", catId);
+    }
+
+//    Создать в классе Cat метод, который будет возвращать сумму съеденной еды текущей кошки
+//    Создать в классе Cat метод “сходить в туалет” pee(), который будет уменьшать вес кошки и что-нибудь печатать.
+//    Рекомендации: протестируйте верную работу метода возврата съеденной еды:
+//
+//    создайте кошку
+//    покормите кошку кормом весом 150.00
+//    вызовите метод pee() несколько раз
+//    распечатайте значение съеденного корма, в консоль должно напечататься 150.00
+
+    @Test
+    void checkPee() {
+        Cat cat = new Cat();
+
+        double feedAmount = 150;
+        cat.feed(feedAmount);
+
+        assertEquals(feedAmount, cat.getCountOfEaten());
+
+        int countOfPee = 5;
+
+        double oldWeight = cat.getWeight();
+
+        IntStream.range(0, countOfPee)
+            .forEach(counter -> {
+                cat.pee();
+            });
+
+        assertEquals(oldWeight - countOfPee, cat.getWeight());
+
     }
 }
