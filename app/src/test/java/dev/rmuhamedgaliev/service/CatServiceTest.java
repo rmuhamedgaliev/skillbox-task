@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 class CatServiceTest {
@@ -58,7 +59,7 @@ class CatServiceTest {
             });
     }
 
-//    "замяукайте" кошку до смерти
+    //    "замяукайте" кошку до смерти
     @Test
     void meowUnderDeath() {
         List<Cat> cats = this.catService.generateCats(DEFAULT_COUNT_OF_CATS);
@@ -76,7 +77,7 @@ class CatServiceTest {
         log.debug("Cat with id: {} is ded", catId);
     }
 
-//    перекормите кошку
+    //    перекормите кошку
     @Test
     void fedUnderDeath() {
         List<Cat> cats = this.catService.generateCats(DEFAULT_COUNT_OF_CATS);
@@ -92,6 +93,60 @@ class CatServiceTest {
             cat.feed(amountOfFood);
         }
 
-        log.debug("Cat with id: {} is ded", catId);
+        log.debug("Cat with id: {} is dead", catId);
+    }
+
+    @Test
+    void checkPee() {
+        Cat cat = new Cat();
+
+        double feedAmount = 150;
+        cat.feed(feedAmount);
+
+        assertEquals(feedAmount, cat.getCountOfEaten());
+
+        int countOfPee = 5;
+
+        double oldWeight = cat.getWeight();
+
+        IntStream.range(0, countOfPee)
+            .forEach(counter -> {
+                cat.pee();
+            });
+
+        assertEquals(oldWeight - countOfPee, cat.getWeight());
+    }
+
+    @Test
+    void checkCreateCatWithWeight() {
+        double weight = 1500;
+        Cat cat = new Cat(weight);
+
+        assertEquals(weight, cat.getWeight());
+    }
+
+    @Test
+    void checkCreateKitten() {
+        Cat kitten = Cat.getKitten();
+
+        double defaultKittenWeight = 1100.00;
+
+        assertEquals(defaultKittenWeight, kitten.getWeight());
+    }
+
+    @Test
+    void checkHasTail() {
+        Cat kitten = Cat.getKitten();
+
+        assertTrue(kitten.hasTail());
+    }
+
+    @Test
+    void checkCloneCat() throws CloneNotSupportedException {
+        Cat kitten = Cat.getKitten();
+
+        Cat clonned = kitten.clone();
+
+        assertEquals(kitten.getWeight(), clonned.getWeight());
     }
 }

@@ -38,3 +38,9 @@ tasks.test {
     // Use junit platform for unit tests.
     useJUnitPlatform()
 }
+
+tasks {
+    named<Test>("test") {
+        testLogging.showStandardStreams = true
+    }
+}
